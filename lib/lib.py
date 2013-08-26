@@ -8,7 +8,7 @@ from bar_chart  import *
 # sample area_chart_config
 # { 'title': "Sample Area Chart", 'xAxis.categories': ["Key1", "Key2", "Key3"], 'series': }
 
-def set_val(json_obj, raw_key, val):
+def update_config(json_obj, raw_key, val):
     traversable_key_list = raw_key.strip().split('.')
     scope = json_obj
     for index, sub_key in enumerate(traversable_key_list):
@@ -36,7 +36,7 @@ data = { 'title': "Sample Area Chart", 'xAxis.categories': ["Key1", "Key2", "Key
 def construct_obj(config_data, chart_type):
     formed_obj = template = options[chart_type]
     for key in config_data:
-        formed_obj = set_val(formed_obj, key, config_data[key])
+        formed_obj = update_config(formed_obj, key, config_data[key])
     return formed_obj
 
 

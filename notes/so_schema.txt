@@ -1,0 +1,132 @@
+user_id
+
+user_name
+
+user_posted_questions   = [question_id]
+
+user_posted_answers     = [answer_id]
+
+user_posts              = [post_id]
+
+user_comments           = [comment_id] 
+
+comments_user_mentioned_in = [comment_id]
+
+user_badges             = [badge_id]
+
+reputation_history      = [event_id]
+
+
+
+
+question_table = 
+{
+  "question_id": 1234,
+  "last_edit_date": 1377485342,
+  "creation_date": 1377416942,
+  "last_activity_date": 1377460142,
+  "score": 1,
+  "answer_count": 0,
+  "answers": [answer_id],
+  "tags": [tag_id],
+  "up_vote_count": 3,
+  "down_vote_count": 2,
+  "favorite_count": 1,
+  "view_count": 31415,
+  "owner": user_id,
+  "is_answered": true
+}
+
+
+answer_table = 
+{
+  "question_id": 1234,
+  "answer_id": 5678,
+  "creation_date": 1377373467,
+  "last_edit_date": 1377441867,
+  "last_activity_date": 1377416667,
+  "score": 1,
+  "is_accepted": false,
+  "owner": user_id,
+  "up_vote_count": 3,
+  "down_vote_count": 2,
+  "comments": [comment_id]
+}
+
+
+
+
+badge_table = 
+{
+  "badge_id": 94,
+  "owner": user_id,
+  "rank": "silver",
+  "name": "Pundit",
+  "description": "Left 10 comments with a score of 5 or more",
+  "award_count": 2000,
+  "badge_type": "named",
+}
+
+
+
+post_table =
+{
+  "post_id": 1,
+  "post_type": "question",
+  "owner": user_id,
+  "creation_date": 1377419705,
+  "last_activity_date": 1377484505,
+  "last_edit_date": 1377462905,
+  "score": 5,
+  "up_vote_count": 7,
+  "down_vote_count": 2
+}
+
+
+
+comment_table = 
+{
+  "comment_id": 12345,
+  "post_id": 5678,
+  "creation_date": 1377416308,
+  "edited": false,
+  "owner": user_id
+}
+
+
+
+
+user_history_table =
+{
+  "event_id": 12321,
+  "post_id": 321231, # may be absent
+  "owner": user_id,
+  "creation_date": 1377419705, # called on_date in api
+  "reputation_change": 5
+  "reputation_event_type": one of [ asker_accepts_answer, asker_unaccept_answer, answer_accepted, answer_unaccepted, voter_downvotes, voter_undownvotes, post_downvoted, 
+                                      post_undownvoted, post_upvoted, post_unupvoted, suggested_edit_approval_received, post_flagged_as_spam, post_flagged_as_offensive, 
+                                      bounty_given, bounty_earned, bounty_cancelled, post_deleted, post_undeleted, association_bonus, arbitrary_reputation_change, 
+                                      vote_fraud_reversal, post_migrated, or user_deleted ]  
+}
+
+
+
+
+tag_table = 
+{
+  "tag_id": 1431,
+  "name"  : "javascript",
+}
+
+
+#same for top_question_tags and top_answer_tags
+top_tags_for_user_table = 
+{
+  "top_tag_id": 1121,
+  "owner": user_id, # called user_id in api
+  "tag_name": "discussion",
+  "question_score": 25,
+  "question_count": 5,
+  "answer_score": 50,
+  "answer_count": 10
+}

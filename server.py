@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, jsonify
-from lib.lib import construct_obj
+from lib.lib import construct_obj, update_config
 
 app = Flask(__name__)
 
@@ -88,12 +88,6 @@ def line_obj():
                                     'text'  : "Reputation/time over time",
                                     'x'     : -20
                                 },
-                    'legend':   {
-                                    'layout': 'vertical',
-                                    'align': 'right',
-                                    'verticalAlign': 'middle',
-                                    'borderWidth': 0
-                                },
                     'xAxis.categories' : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
                     'series':   [{
                                     'name' : "Stackoverflow",
@@ -108,6 +102,8 @@ def line_obj():
                 }
     line_obj = construct_obj(config, 'line')
     return jsonify(line_obj)                
+
+
 
 
 
