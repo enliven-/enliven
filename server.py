@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 from lib.lib import construct_obj, update_config
+from data.api import process_profile, lang_distr_pie
 
 app = Flask(__name__)
 
@@ -12,6 +13,7 @@ def pie_view():
 
 @app.route('/pieobj')
 def pie_obj():
+    data = lang_distr_pie(process_profile()[1])
     config = {
                 'title.text' : "Language distribution",
                 'tooltip.pointFormat' : "{series.name}: <b>{point.percentage:.1f}%</b>",
@@ -19,19 +21,20 @@ def pie_obj():
                 'series': [{
                             'type': 'pie',
                             'name': 'Language share',
-                            'data': [
-                                        ['Javascript',   45.0],
-                                        ['Python',       26.8],
-                                        {
-                                            'name': 'Ruby',
-                                            'y': 12.8,
-                                            'sliced': True,
-                                            'selected': True
-                                        },
-                                        ['Java',    8.5],
-                                        ['Lua',     6.2],
-                                        ['Others',   0.7]
-                                    ]
+                            # 'data': [
+                            #             ['Javascript',   45.0],
+                            #             ['Python',       26.8],
+                            #             {
+                            #                 'name': 'Ruby',
+                            #                 'y': 12.8,
+                            #                 'sliced': True,
+                            #                 'selected': True
+                            #             },
+                            #             ['Java',    8.5],
+                            #             ['Lua',     6.2],
+                            #             ['Others',   0.7]
+                            #         ]
+                            'data': data
                           }]
             }
     pie_obj = construct_obj(config, 'pie')
@@ -102,8 +105,6 @@ def line_obj():
                 }
     line_obj = construct_obj(config, 'line')
     return jsonify(line_obj)                
-
-
 
 
 
